@@ -14,13 +14,13 @@ const Board = () => {
     const [tasks, setTasks] = useState([]);
     const [error, setError] = useState('');
     //using MyJson Server create data
-    const myUrl = 'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/task';
+    const myUrl = 'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/tasks';
 
     useEffect(()=>{
        async function fetchData(){
            try{
                const tasks = await fetch (myUrl);
-               const result = await tasks.join();
+               const result = await tasks.json();
                if(result){
                    setTasks(result);
                    setLoading(false); //loading is complete
