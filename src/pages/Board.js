@@ -9,6 +9,15 @@ const lanes = [
     {id:4, title:'Done'},
 ];
 
+/**
+ The HTML5 Drag and Drop API makes it possible for us to drag and drop elements
+ across our project management board. To make this possible, it uses drag events.
+ onDragStart, onDragOver, and onDrop will be used for this application
+ */
+const onDragStart = (e,id) => {
+    e.dataTransfer.setData('id',id);
+};
+
 const Board = () => {
     //using MyJson Server create data
     const myUrl = 'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/tasks';
@@ -25,6 +34,7 @@ const Board = () => {
                     loading={loading}
                     error = {error}
                     tasks = {tasks.filter((task)=> task.lane === lane.id)}
+                    onDragStart = {onDragStart}
                 />
             ))}
         </div>
